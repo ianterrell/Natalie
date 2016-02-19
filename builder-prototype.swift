@@ -999,11 +999,11 @@ class Storyboard: XMLObject {
                 var (to, from) = ("vc", "destination")
                 if segue.viaNav {
                     to = "nav"
-                    print("                guard let \(to) = \(from) as UINavigationController else { return nil }")
-                    from = "\(to).rootViewController?"
+                    print("                guard let \(to) = \(from) as? UINavigationController else { return nil }")
+                    from = "\(to).viewControllers.first"
                     to = "vc"
                 }
-                print("                guard let \(to) = \(from) as UINavigationController else { return nil }")
+                print("                guard let \(to) = \(from) as? \(SwiftRepresentationForString(segue.destination)) else { return nil }")
                 print("                self = \(SwiftRepresentationForString(segue.identifier))(\(to))")
             }
             print("            }")
